@@ -6,15 +6,6 @@ private val viewModelModule = module {
 //    viewModel {
 //        ShoppingListViewModel(get())
 //    }
-//    viewModel {
-//        ShoppingListDetailViewModel(get(), get(), get())
-//    }
-//    viewModel {
-//        ShoppingListAddViewModel(get())
-//    }
-//    viewModel {
-//        ImageSearchViewModel(get())
-//    }
 }
 
 val presentationModule = listOf(viewModelModule)

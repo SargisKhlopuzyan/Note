@@ -1,28 +1,31 @@
 package com.sargis.khlopuzyan.data.di
 
+import com.sargis.khlopuzyan.data.local.dao.NoteDao
+import com.sargis.khlopuzyan.data.local.db.NoteDatabase
+import com.sargis.khlopuzyan.data.local.source.NoteDataStore
+import com.sargis.khlopuzyan.data.local.source.NoteDataStoreImpl
+import com.sargis.khlopuzyan.data.repository.NoteRepositoryImpl
+import com.sargis.khlopuzyan.domain.repository.NoteRepository
 import org.koin.dsl.module
 
 private val databaseModule = module {
-//    single<ShoppingListDatabase> {
-//        ShoppingListDatabase.getInstance(get())
-//    }
-//    single<ShoppingListDao> {
-//        get<ShoppingListDatabase>().shoppingListDao()
-//    }
-//    single<ShoppingListDataStore> {
-//        ShoppingListDataStoreImpl(get())
-//    }
+    single<NoteDatabase> {
+        NoteDatabase.getInstance(get())
+    }
+    single<NoteDao> {
+        get<NoteDatabase>().noteDao()
+    }
+    single<NoteDataStore> {
+        NoteDataStoreImpl(get())
+    }
 }
 
 private val repositoryModule = module {
 //    single<PixabayApi> { PixabayApiRetrofitBuilder.build() }
-//    single<PixabayRepository> { PixabayRepositoryImpl(get()) }
-//    single<ShoppingListRepository> { ShoppingListRepositoryImpl(get()) }
-//    single<MediaStoreUtil> { MediaStoreUtil(get()) }
-//    single<MediaStoreRepository> { MediaStoreRepositoryImpl(get()) }
+    single<NoteRepository> { NoteRepositoryImpl(get()) }
 }
 
-private val utilitiesModule = module {
+private val utilityModule = module {
 }
 
-val dataModule = listOf(databaseModule, repositoryModule, utilitiesModule)
+val dataModule = listOf(databaseModule, repositoryModule, utilityModule)

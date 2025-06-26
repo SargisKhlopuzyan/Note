@@ -46,8 +46,8 @@ dependencies {
     implementation(libs.koin.android)
 
     // Room
-//    implementation(libs.androidx.room.runtime)
-//    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation(libs.androidx.room.runtime)
+    // optional - Kotlin Extensions and Coroutines support for Room
 //    implementation(libs.androidx.room.ktx)
 //    // If project uses any Kotlin source, use Kotlin Symbol Processing (KSP)
 //    ksp(libs.androidx.room.compiler)
@@ -56,6 +56,7 @@ dependencies {
 //    implementation(libs.gson)
 
     implementation(libs.androidx.core.ktx)
+
 //    implementation(libs.androidx.appcompat)
 //    implementation(libs.material)
 
