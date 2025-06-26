@@ -40,28 +40,28 @@ class GetNotesUseCaseImpl(
 /**
  * Instead of interface and implementation we can just have this
  * */
-class GetNotes(
-    val noteRepository: NoteRepository,
-) {
-    operator fun invoke(noteOrder: NoteOrder = NoteOrder.Date(OrderType.Descending)): Flow<List<Note>> {
-        return noteRepository.getNotes().map { notes ->
-            when (noteOrder.orderType) {
-                OrderType.Ascending -> {
-                    when (noteOrder) {
-                        is NoteOrder.Title -> notes.sortedBy { it.title }
-                        is NoteOrder.Date -> notes.sortedBy { it.timeStamp }
-                        is NoteOrder.Color -> notes.sortedBy { it.color }
-                    }
-                }
-
-                OrderType.Descending -> {
-                    when (noteOrder) {
-                        is NoteOrder.Title -> notes.sortedBy { it.title }
-                        is NoteOrder.Date -> notes.sortedBy { it.timeStamp }
-                        is NoteOrder.Color -> notes.sortedBy { it.color }
-                    }
-                }
-            }
-        }
-    }
-}
+//class GetNotes(
+//    val noteRepository: NoteRepository,
+//) {
+//    operator fun invoke(noteOrder: NoteOrder = NoteOrder.Date(OrderType.Descending)): Flow<List<Note>> {
+//        return noteRepository.getNotes().map { notes ->
+//            when (noteOrder.orderType) {
+//                OrderType.Ascending -> {
+//                    when (noteOrder) {
+//                        is NoteOrder.Title -> notes.sortedBy { it.title }
+//                        is NoteOrder.Date -> notes.sortedBy { it.timeStamp }
+//                        is NoteOrder.Color -> notes.sortedBy { it.color }
+//                    }
+//                }
+//
+//                OrderType.Descending -> {
+//                    when (noteOrder) {
+//                        is NoteOrder.Title -> notes.sortedBy { it.title }
+//                        is NoteOrder.Date -> notes.sortedBy { it.timeStamp }
+//                        is NoteOrder.Color -> notes.sortedBy { it.color }
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}

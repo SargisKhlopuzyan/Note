@@ -8,7 +8,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.component.KoinComponent
 import org.koin.core.context.GlobalContext.startKoin
 
-class NoteApp: Application(), KoinComponent {
+class NoteApp : Application(), KoinComponent {
 
     override fun onCreate() {
         super.onCreate()
@@ -17,5 +17,4 @@ class NoteApp: Application(), KoinComponent {
             modules(dataModule + domainModule + presentationModule)
         }
     }
-
 }

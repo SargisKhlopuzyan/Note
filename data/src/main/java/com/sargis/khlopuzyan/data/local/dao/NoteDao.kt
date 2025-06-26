@@ -9,16 +9,17 @@ import com.sargis.khlopuzyan.data.local.entity.NoteEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface NoteDao {
-    @Query("SELECT * FROM noteentity")
-    fun getNotes(): Flow<List<NoteEntity>>
+abstract class NoteDao {
 
-    @Query("SELECT * FROM noteentity WHERE id = :id")
-    suspend fun getNoteById(id: Int): NoteEntity?
+    @Query("SELECT * FROM note")
+    abstract fun getNotes(): Flow<List<NoteEntity>>
+
+    @Query("SELECT * FROM note WHERE id = :id")
+    abstract suspend fun getNoteById(id: Int): NoteEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertNote(node: NoteEntity): Int
+    abstract suspend fun insertNote(node: NoteEntity): Long
 
     @Delete
-    suspend fun deleteNote(node: NoteEntity): Int
+    abstract suspend fun deleteNote(node: NoteEntity): Int
 }

@@ -4,16 +4,16 @@ import com.sargis.khlopuzyan.data.local.dao.NoteDao
 import com.sargis.khlopuzyan.data.local.entity.NoteEntity
 import kotlinx.coroutines.flow.Flow
 
-interface NoteDataStore {
+interface NoteDataSource {
     fun getNotes(): Flow<List<NoteEntity>>
     suspend fun getNoteById(id: Int): NoteEntity?
-    suspend fun insertNote(node: NoteEntity): Int
-    suspend fun deleteNote(node: NoteEntity): Int
+    suspend fun insertNote(node: NoteEntity)
+    suspend fun deleteNote(node: NoteEntity)
 }
 
-class NoteDataStoreImpl(
+class NoteDataSourceImpl(
     val dao: NoteDao,
-) : NoteDataStore {
+) : NoteDataSource {
     override fun getNotes(): Flow<List<NoteEntity>> {
         return dao.getNotes()
     }
@@ -22,11 +22,11 @@ class NoteDataStoreImpl(
         return dao.getNoteById(id)
     }
 
-    override suspend fun insertNote(node: NoteEntity): Int {
-        return dao.insertNote(node)
+    override suspend fun insertNote(node: NoteEntity) {
+        dao.insertNote(node)
     }
 
-    override suspend fun deleteNote(node: NoteEntity): Int {
-        return dao.deleteNote(node)
+    override suspend fun deleteNote(node: NoteEntity) {
+        dao.deleteNote(node)
     }
 }

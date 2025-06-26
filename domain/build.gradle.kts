@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.sargis.khlopuzyan.domain"
+    namespace = "com.sargis.khlopuzyan.note.domain"
     compileSdk = 35
 
     defaultConfig {
@@ -23,6 +23,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11

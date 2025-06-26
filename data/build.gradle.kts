@@ -1,10 +1,12 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
+//    alias(libs.plugins.kotlinter)
 }
 
 android {
-    namespace = "com.sargis.khlopuzyan.data"
+    namespace = "com.sargis.khlopuzyan.note.data"
     compileSdk = 35
 
     defaultConfig {
@@ -33,10 +35,10 @@ android {
 //    buildFeatures {
 //        buildConfig = true
 //    }
-//
-//    ksp {
-//        arg("room.schemaLocation", "$projectDir/schemas")
-//    }
+
+    ksp {
+        arg("room.schemaLocation", "$projectDir/schemas")
+    }
 }
 
 dependencies {
@@ -48,17 +50,17 @@ dependencies {
     // Room
     implementation(libs.androidx.room.runtime)
     // optional - Kotlin Extensions and Coroutines support for Room
-//    implementation(libs.androidx.room.ktx)
-//    // If project uses any Kotlin source, use Kotlin Symbol Processing (KSP)
-//    ksp(libs.androidx.room.compiler)
-//
+    implementation(libs.androidx.room.ktx)
+    // If project uses any Kotlin source, use Kotlin Symbol Processing (KSP)
+    ksp(libs.androidx.room.compiler)
+
 //    // Gson
-//    implementation(libs.gson)
+    implementation(libs.gson)
 
     implementation(libs.androidx.core.ktx)
-
-//    implementation(libs.androidx.appcompat)
-//    implementation(libs.material)
+    // NEED TO BE CHECKED
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
 
     // Tests
     testImplementation(libs.junit)

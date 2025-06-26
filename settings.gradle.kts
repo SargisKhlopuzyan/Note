@@ -20,7 +20,6 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Note"
-
 // This for modules to make it possible use implementation(projects.data), etc
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 

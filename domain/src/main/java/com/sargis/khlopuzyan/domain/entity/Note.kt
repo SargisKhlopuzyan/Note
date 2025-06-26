@@ -3,7 +3,7 @@ package com.sargis.khlopuzyan.domain.entity
 import android.graphics.Color
 
 data class Note(
-    val id: Int? = null,
+    val id: Long? = null,
     val title: String,
     val content: String,
     val timeStamp: Long,

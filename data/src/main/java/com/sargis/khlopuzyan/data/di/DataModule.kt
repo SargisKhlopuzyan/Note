@@ -2,8 +2,8 @@ package com.sargis.khlopuzyan.data.di
 
 import com.sargis.khlopuzyan.data.local.dao.NoteDao
 import com.sargis.khlopuzyan.data.local.db.NoteDatabase
-import com.sargis.khlopuzyan.data.local.source.NoteDataStore
-import com.sargis.khlopuzyan.data.local.source.NoteDataStoreImpl
+import com.sargis.khlopuzyan.data.local.source.NoteDataSource
+import com.sargis.khlopuzyan.data.local.source.NoteDataSourceImpl
 import com.sargis.khlopuzyan.data.repository.NoteRepositoryImpl
 import com.sargis.khlopuzyan.domain.repository.NoteRepository
 import org.koin.dsl.module
@@ -15,8 +15,8 @@ private val databaseModule = module {
     single<NoteDao> {
         get<NoteDatabase>().noteDao()
     }
-    single<NoteDataStore> {
-        NoteDataStoreImpl(get())
+    single<NoteDataSource> {
+        NoteDataSourceImpl(get())
     }
 }
 

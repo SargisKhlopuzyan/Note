@@ -5,10 +5,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.sargis.khlopuzyan.domain.entity.Note
 
-@Entity
+@Entity(tableName = "note")
 data class NoteEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Int? = null,
+    val id: Long? = null,
     val title: String,
     val content: String,
     val timeStamp: Long,
