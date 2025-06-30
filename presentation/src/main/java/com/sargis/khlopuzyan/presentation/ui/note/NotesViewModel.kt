@@ -1,5 +1,6 @@
 package com.sargis.khlopuzyan.presentation.ui.note
 
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewModelScope
 import com.sargis.khlopuzyan.domain.entity.Note
 import com.sargis.khlopuzyan.domain.usecase.DeleteNoteUseCase
@@ -21,8 +22,7 @@ class NotesViewModel(
     private val insertNoteUseCase: InsertNoteUseCase,
 ) : BaseViewModel<NotesUiState, NotesUiEvent>() {
 
-    override val _uiState: MutableStateFlow<NotesUiState>
-        get() = MutableStateFlow(NotesUiState())
+    override val _uiState: MutableStateFlow<NotesUiState> = MutableStateFlow(NotesUiState())
 
     private var recentlyDeletedNote: Note? = null
 
@@ -83,17 +83,33 @@ class NotesViewModel(
     }
 
     private fun getNotes(noteOrder: NoteOrder) {
-//        viewModelScope.launch {
-//            getNotesUseCase.getNotes(noteOrder).collect {
-//
-//            }
-//        }
-
         getNotesJob?.cancel()
         getNotesJob = getNotesUseCase.getNotes(noteOrder).onEach { notes ->
             updateUiState {
                 it.copy(
-                    notes = notes,
+                    notes = if (notes.isEmpty()) listOf(
+                        Note(
+                            1,
+                            "Title 1",
+                            "Content 1",
+                            10001L,
+                            Color.Red.value.toInt()
+                        ),
+                        Note(
+                            2,
+                            "Title 2",
+                            "Content 2",
+                            10002L,
+                            Color.Red.value.toInt()
+                        ),
+                        Note(
+                            3,
+                            "Title 3",
+                            "Content 3",
+                            10003L,
+                            Color.Red.value.toInt()
+                        )
+                    ) else notes,
                     noteOrder = noteOrder
                 )
             }
