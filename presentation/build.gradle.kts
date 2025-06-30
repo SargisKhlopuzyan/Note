@@ -54,6 +54,8 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
 
+    // Additional icons
+    implementation(libs.androidx.material.icons.extended.android)
 //    implementation(libs.androidx.ui.tooling)
 
     // Injection Koin

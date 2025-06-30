@@ -19,6 +19,7 @@ gson = "2.11.0"
 googleTruth = "1.1"
 androidxNavigationCompose = "2.9.0"
 #kotlinter = "5.0.1"
+materialIconsExtendedAndroid = "1.7.8"
 
 
 [libraries]
@@ -47,6 +48,7 @@ androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 google-truth-v11 = { module = "com.google.truth:truth", version.ref = "googleTruth" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidxNavigationCompose" }
+androidx-material-icons-extended-android = { module = "androidx.compose.material:material-icons-extended-android", version.ref = "materialIconsExtendedAndroid" }
 
 
 [plugins]
