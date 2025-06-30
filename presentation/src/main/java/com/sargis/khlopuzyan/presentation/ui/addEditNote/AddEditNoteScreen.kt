@@ -47,6 +47,7 @@ import org.koin.androidx.compose.koinViewModel
 fun AddEditNoteScreen(
     navController: NavController,
     noteId: Int?,
+    noteColor: Int?,
     addEditNoteViewModel: AddEditNoteViewModel = koinViewModel(),
 ) {
     val uiState by addEditNoteViewModel.uiState.collectAsStateWithLifecycle()
@@ -74,6 +75,7 @@ fun AddEditNoteScreen(
 
     AddEditNote(
         uiState,
+        noteColor,
         onChangeColor = { color ->
             addEditNoteViewModel.onEvent(AddEditNoteUiEvent.ChangeColor(color))
         },
@@ -98,6 +100,7 @@ fun AddEditNoteScreen(
 @Composable
 fun AddEditNote(
     uiState: AddEditNoteUiState,
+    noteColor: Int?,
     onChangeColor: (Int) -> Unit,
     onTitleValueChange: (String) -> Unit,
     onTitleFocusChange: (FocusState) -> Unit,
@@ -110,7 +113,7 @@ fun AddEditNote(
     val noteColorState = uiState.noteColorState.intValue
 
     val noteBackgroundAnimatable = remember {
-        Animatable(Color(noteColorState))
+        Animatable(Color(noteColor ?: noteColorState))
     }
 
     val scope = rememberCoroutineScope()
@@ -134,8 +137,7 @@ fun AddEditNote(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-//                .background(noteBackgroundAnimatable.value)
-                .background(Color(noteColorState))
+                .background(noteBackgroundAnimatable.value)
                 .padding(contentPadding)
                 .padding(16.dp)
         ) {
@@ -222,6 +224,7 @@ fun AddEditNote(
 fun AddEditNotePreview() {
     AddEditNote(
         AddEditNoteUiState(),
+        noteColor = null,
         onChangeColor = {},
         onTitleValueChange = {},
         onTitleFocusChange = {},

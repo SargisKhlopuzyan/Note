@@ -20,9 +20,14 @@ fun NoteNavigation() {
             NotesScreen(navController)
         }
         composable(
-            route = NoteScreen.AddEditNoteScreen.route + "?noteId={noteId}",
+            route = NoteScreen.AddEditNoteScreen.route + "?noteId={noteId}&noteColor={noteColor}",
             arguments = listOf(
                 navArgument("noteId") {
+                    type = NavType.IntType
+                    defaultValue = -1
+                    nullable = false
+                },
+                navArgument("noteColor") {
                     type = NavType.IntType
                     defaultValue = -1
                     nullable = false
@@ -32,7 +37,10 @@ fun NoteNavigation() {
             val noteId = backStackEntry.arguments?.getInt("noteId")?.let { id ->
                 if (id == -1) null else id
             }
-            AddEditNoteScreen(navController, noteId)
+            val noteColor = backStackEntry.arguments?.getInt("noteColor")?.let { color ->
+                if (color == -1) null else color
+            }
+            AddEditNoteScreen(navController, noteId, noteColor)
         }
     }
 }

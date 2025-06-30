@@ -160,7 +160,7 @@ fun Notes(
                             .fillMaxWidth()
                             .clickable {
                                 navController.navigate(
-                                    NoteScreen.AddEditNoteScreen.route + "?noteId=${note.id}"
+                                    NoteScreen.AddEditNoteScreen.route + "?noteId=${note.id}&noteColor=${note.color}"
                                 )
                             },
                         note = note,
