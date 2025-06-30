@@ -1,9 +1,12 @@
 package com.sargis.khlopuzyan.presentation.ui.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.sargis.khlopuzyan.presentation.ui.addEditNote.AddEditNoteScreen
 import com.sargis.khlopuzyan.presentation.ui.note.NotesScreen
 
 @Composable
@@ -15,6 +18,21 @@ fun NoteNavigation() {
     ) {
         composable(route = NoteScreen.NotesScreen.route) {
             NotesScreen(navController)
+        }
+        composable(
+            route = NoteScreen.AddEditNoteScreen.route + "?noteId={noteId}",
+            arguments = listOf(
+                navArgument("noteId") {
+                    type = NavType.IntType
+                    defaultValue = -1
+                    nullable = false
+                }
+            )
+        ) { backStackEntry ->
+            val noteId = backStackEntry.arguments?.getInt("noteId")?.let { id ->
+                if (id == -1) null else id
+            }
+            AddEditNoteScreen(navController, noteId)
         }
     }
 }

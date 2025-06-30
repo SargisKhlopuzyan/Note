@@ -9,7 +9,4 @@ sealed interface NotesUiEvent : UIEvent {
     data class DeleteNote(val note: Note) : NotesUiEvent
     object RestoreNote : NotesUiEvent
     object ToggleOrderSection : NotesUiEvent
-
-    object AddNote : NotesUiEvent
-    data class UpdateNote(val note: Note) : NotesUiEvent
 }

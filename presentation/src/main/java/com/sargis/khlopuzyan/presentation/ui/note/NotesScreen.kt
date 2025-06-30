@@ -24,6 +24,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Text
@@ -41,6 +43,7 @@ import androidx.navigation.compose.rememberNavController
 import com.sargis.khlopuzyan.domain.entity.Note
 import com.sargis.khlopuzyan.domain.util.NoteOrder
 import com.sargis.khlopuzyan.presentation.ui.common.OrderSection
+import com.sargis.khlopuzyan.presentation.ui.navigation.NoteScreen
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
@@ -64,6 +67,9 @@ fun NotesScreen(
         },
         onRestoreNote = {
             notesViewModel.onEvent(NotesUiEvent.RestoreNote)
+        },
+        onAddNote = {
+            navController.navigate(NoteScreen.AddEditNoteScreen.route)
         }
     )
 }
@@ -76,17 +82,22 @@ fun Notes(
     onChangeOrder: (NoteOrder) -> Unit,
     onDeleteNote: (Note) -> Unit,
     onRestoreNote: () -> Unit,
+    onAddNote: () -> Unit,
 ) {
     val snackbarHostState = remember {
         SnackbarHostState()
     }
     val scope = rememberCoroutineScope()
+
     Scaffold(
         modifier = Modifier.fillMaxSize(),
+        snackbarHost = {
+            SnackbarHost(hostState = snackbarHostState)
+        },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-
+                    onAddNote()
                 },
                 containerColor = MaterialTheme.colorScheme.primary
             ) {
@@ -148,7 +159,9 @@ fun Notes(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable {
-
+                                navController.navigate(
+                                    NoteScreen.AddEditNoteScreen.route + "?noteId=${note.id}"
+                                )
                             },
                         note = note,
                         onDeleteClick = {
@@ -156,7 +169,8 @@ fun Notes(
                             scope.launch {
                                 val result = snackbarHostState.showSnackbar(
                                     message = "Note deleted",
-                                    actionLabel = "Undo"
+                                    actionLabel = "Undo",
+                                    duration = SnackbarDuration.Long
                                 )
                                 if (result == SnackbarResult.ActionPerformed) {
                                     onRestoreNote()
@@ -181,6 +195,7 @@ fun NotesPreview() {
         onToggleOrderSection = {},
         onChangeOrder = {},
         onDeleteNote = {},
-        onRestoreNote = {}
+        onRestoreNote = {},
+        onAddNote = {},
     )
 }

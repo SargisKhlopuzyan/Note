@@ -14,3 +14,11 @@ class DeleteNoteUseCaseImpl(
         return noteRepository.deleteNote(note)
     }
 }
+
+//class DeleteNoteUseCase(
+//    val noteRepository: NoteRepository,
+//) {
+//    suspend operator fun invoke(note: Note) {
+//        return noteRepository.deleteNote(note)
+//    }
+//}

@@ -8,13 +8,13 @@ import com.sargis.khlopuzyan.domain.entity.Note
 @Entity(tableName = "note")
 data class NoteEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Long? = null,
+    val id: Int? = null,
     val title: String,
     val content: String,
     val timeStamp: Long,
     val color: Int,
 ) {
-    companion object {
+    companion object Colors {
         val RedOrange = Color.argb(255, 83, 73, 255)
         val LightGreen = Color.argb(144, 245, 100, 255)
         val Violet = Color.argb(146, 100, 245, 255)

@@ -14,3 +14,11 @@ class GetNoteByIdUseCaseImpl(
         return noteRepository.getNoteById(id)
     }
 }
+
+//class GetNoteByIdUseCase(
+//    val noteRepository: NoteRepository,
+//) {
+//    suspend operator fun invoke(id: Int): Note? {
+//        return noteRepository.getNoteById(id)
+//    }
+//}

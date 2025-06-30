@@ -24,3 +24,18 @@ class InsertNoteUseCaseImpl(
         noteRepository.insertNote(note)
     }
 }
+
+//class InsertNoteUseCase(
+//    val noteRepository: NoteRepository,
+//) {
+//    @Throws(InvalidNoteException::class)
+//    suspend operator fun invoke(note: Note) {
+//        if (note.title.isEmpty()) {
+//            throw InvalidNoteException("The title of the note can't be empty.")
+//        }
+//        if (note.content.isEmpty()) {
+//            throw InvalidNoteException("The content of the note can't be empty.")
+//        }
+//        noteRepository.insertNote(note)
+//    }
+//}
