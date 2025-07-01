@@ -35,6 +35,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -44,6 +45,7 @@ import com.sargis.khlopuzyan.domain.entity.Note
 import com.sargis.khlopuzyan.domain.util.NoteOrder
 import com.sargis.khlopuzyan.presentation.ui.common.OrderSection
 import com.sargis.khlopuzyan.presentation.ui.navigation.NoteScreen
+import com.sargis.khlopuzyan.presentation.util.TestTags
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
@@ -141,7 +143,8 @@ fun Notes(
                 OrderSection(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 16.dp),
+                        .padding(vertical = 16.dp)
+                        .testTag(TestTags.ORDER_SECTION),
                     noteOrder = uiState.noteOrder,
                     onOrderChange = { noteOrder ->
                         onChangeOrder(noteOrder)

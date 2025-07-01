@@ -1,5 +1,4 @@
 plugins {
-//    alias(libs.plugins.android.application) apply false
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
@@ -12,7 +11,8 @@ android {
     defaultConfig {
         minSdk = 24
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+//        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.sargis.khlopuzyan.presentation.InstrumentationTestRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -88,6 +88,8 @@ dependencies {
 //    androidTestImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
     // This need to be included as no one knows why app crashes
     androidTestImplementation(libs.androidx.runner)
+    androidTestImplementation(libs.koin.core)
+    androidTestImplementation(libs.koin.test.junit4)
 
 //
 //
@@ -95,7 +97,8 @@ dependencies {
 //    testImplementation(libs.google.truth.v11)
 //    // UI testing
     androidTestImplementation(libs.androidx.junit)
-//    androidTestImplementation(libs.androidx.ui.test.junit4)
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+
 //    androidTestImplementation(platform(libs.androidx.compose.bom))
 //    androidTestImplementation(libs.google.truth.v11)
 //    // Espresso for UI testing
