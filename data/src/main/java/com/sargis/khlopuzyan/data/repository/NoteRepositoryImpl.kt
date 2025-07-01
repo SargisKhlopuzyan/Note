@@ -22,11 +22,11 @@ class NoteRepositoryImpl(
         return noteDataStore.getNoteById(id)?.toNote()
     }
 
-    override suspend fun insertNote(node: Note) {
-        noteDataStore.insertNote(node.toNoteEntity())
+    override suspend fun insertNote(note: Note) {
+        noteDataStore.insertNote(note.toNoteEntity())
     }
 
-    override suspend fun deleteNote(node: Note) {
-        noteDataStore.deleteNote(node.toNoteEntity())
+    override suspend fun deleteNote(note: Note) {
+        noteDataStore.deleteNote(note.toNoteEntity())
     }
 }

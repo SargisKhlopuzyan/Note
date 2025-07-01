@@ -10,10 +10,11 @@ import androidx.compose.ui.graphics.Color
 //val PurpleGrey40 = Color(0xFF625b71)
 //val Pink40 = Color(0xFF7D5260)
 
-val RedOrange = Color(0xFFE51E1E)
-val LightGreen = Color(0xFF66D76B)
-val Violet = Color(0xFF9C27B0)
-val BabyBlue = Color(0xFF03A9F4)
+val RedOrange = Color(0xffffab91)
+val RedPink = Color(0xfff48fb1)
+val BabyBlue = Color(0xff81deea)
+val Violet = Color(0xffcf94da)
+val LightGreen = Color(0xffe7ed9b)
+
 val BabyLightBlue = Color(0xFFCBE4EC)
 val BabyDarkBlue = Color(0xFF045172)
-val RedPink = Color(0xFFE75183)

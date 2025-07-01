@@ -4,8 +4,8 @@ import androidx.compose.runtime.MutableIntState
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
-import com.sargis.khlopuzyan.domain.entity.Note
 import com.sargis.khlopuzyan.presentation.base.UIState
+import com.sargis.khlopuzyan.presentation.util.NoteUtil.noteColors
 
 data class AddEditNoteUiState(
     val noteTitleState: MutableState<NoteTextFieldState> = mutableStateOf(
@@ -18,7 +18,7 @@ data class AddEditNoteUiState(
             hint = "Enter some content..."
         )
     ),
-    val noteColorState: MutableIntState = mutableIntStateOf(Note.RedOrange),
+    val noteColorState: MutableIntState = mutableIntStateOf(noteColors().random()),
 ) : UIState
 
 data class NoteTextFieldState(
