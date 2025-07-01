@@ -1,4 +1,4 @@
-package com.sargis.khlopuzyan.presentation.ui.note
+package com.sargis.khlopuzyan.presentation.ui.notes
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn

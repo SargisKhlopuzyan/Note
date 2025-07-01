@@ -1,4 +1,4 @@
-package com.sargis.khlopuzyan.presentation.ui.note
+package com.sargis.khlopuzyan.presentation.ui.notes
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box

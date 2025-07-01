@@ -7,7 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.sargis.khlopuzyan.presentation.ui.addEditNote.AddEditNoteScreen
-import com.sargis.khlopuzyan.presentation.ui.note.NotesScreen
+import com.sargis.khlopuzyan.presentation.ui.notes.NotesScreen
 
 @Composable
 fun NoteNavigation() {

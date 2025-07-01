@@ -1,4 +1,4 @@
-package com.sargis.khlopuzyan.presentation.ui.note
+package com.sargis.khlopuzyan.presentation.ui.notes
 
 import androidx.lifecycle.viewModelScope
 import com.sargis.khlopuzyan.domain.entity.Note

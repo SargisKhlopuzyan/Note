@@ -1,7 +1,7 @@
 package com.sargis.khlopuzyan.presentation.di
 
 import com.sargis.khlopuzyan.presentation.ui.addEditNote.AddEditNoteViewModel
-import com.sargis.khlopuzyan.presentation.ui.note.NotesViewModel
+import com.sargis.khlopuzyan.presentation.ui.notes.NotesViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
