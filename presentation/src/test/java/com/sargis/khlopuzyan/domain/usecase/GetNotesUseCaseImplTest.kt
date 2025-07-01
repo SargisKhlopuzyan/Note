@@ -12,6 +12,7 @@ import org.junit.Before
 import org.junit.Test
 
 class GetNotesUseCaseImplTest {
+
     private lateinit var getNotesUseCase: GetNotesUseCase
     private lateinit var fakeNoteRepository: FakeNoteRepository
 
