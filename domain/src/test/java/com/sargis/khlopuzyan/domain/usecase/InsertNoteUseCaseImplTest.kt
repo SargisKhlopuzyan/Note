@@ -13,13 +13,15 @@ import org.junit.Test
 class InsertNoteUseCaseImplTest {
 
     private lateinit var insertNoteUseCase: InsertNoteUseCase
+    private lateinit var getNoteByIdUseCase: GetNoteByIdUseCase
     private lateinit var repository: NoteRepository
-    val colors = listOf(1, 2, 3, 4, 5, 6)
+    private val colors = listOf(1, 2, 3, 4, 5, 6)
 
     @Before
     fun setUp() {
         repository = FakeNoteRepository()
         insertNoteUseCase = InsertNoteUseCaseImpl(repository)
+        getNoteByIdUseCase = GetNoteByIdUseCaseImpl(repository)
     }
 
     @Test
@@ -67,4 +69,31 @@ class InsertNoteUseCaseImplTest {
             )
             insertNoteUseCase.insertNote(note)
         }
+
+    @Test
+    fun `inserting already added note will update existing one`() = runBlocking {
+        val noteId = 0
+        val note = Note(
+            id = noteId,
+            title = "Title",
+            content = "Content",
+            timeStamp = System.currentTimeMillis(),
+            color = colors.random()
+        )
+        insertNoteUseCase.insertNote(note)
+
+        val existingNote = getNoteByIdUseCase.getNoteById(noteId)
+
+        val newNote = Note(
+            id = existingNote?.id,
+            title = "Updated Title",
+            content = "Updated Content",
+            timeStamp = System.currentTimeMillis(),
+            color = colors.random()
+        )
+        insertNoteUseCase.insertNote(newNote)
+        val updatedNote = getNoteByIdUseCase.getNoteById(noteId)
+
+        Truth.assertThat(updatedNote).isNotEqualTo(existingNote)
+    }
 }

@@ -13,13 +13,13 @@ import org.junit.Test
 class GetNotesUseCaseImplTest {
 
     private lateinit var getNotesUseCase: GetNotesUseCase
-    private lateinit var fakeNoteRepository: FakeNoteRepository
-    val colors = listOf(1, 2, 3, 4, 5, 6)
+    private lateinit var noteRepository: FakeNoteRepository
+    private val colors = listOf(1, 2, 3, 4, 5, 6)
 
     @Before
     fun setUp() {
-        fakeNoteRepository = FakeNoteRepository()
-        getNotesUseCase = GetNotesUseCaseImpl(fakeNoteRepository)
+        noteRepository = FakeNoteRepository()
+        getNotesUseCase = GetNotesUseCaseImpl(noteRepository)
 
         val notesToInsert = mutableListOf<Note>()
 
@@ -42,7 +42,7 @@ class GetNotesUseCaseImplTest {
 
         runBlocking {
             notesToInsert.forEach { note ->
-                fakeNoteRepository.insertNote(note)
+                noteRepository.insertNote(note)
             }
         }
     }
