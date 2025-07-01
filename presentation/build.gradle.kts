@@ -65,15 +65,41 @@ dependencies {
 
     // Compose preview
     debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
 
+
+
+    // Local unit tests
+    testImplementation(libs.androidx.core)
     testImplementation(libs.junit)
-    testImplementation(libs.google.truth.v11)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.google.truth.v11)
+    testImplementation(libs.androidx.core.testing)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.truth)
+    // In case we need to test api
+//    testImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
+    testImplementation(libs.mockk)
+    testImplementation(libs.ui.test.manifest)
 
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    // UI testing
+
+    // Instrumentation tests
+    androidTestImplementation(libs.androidx.core.testing)
+    androidTestImplementation(libs.kotlinx.coroutines.test)
+    androidTestImplementation(libs.truth)
+    androidTestImplementation(libs.core.ktx)
+//    androidTestImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
+    // This need to be included as no one knows why app crashes
+    androidTestImplementation(libs.androidx.runner)
+
+//
+//
+//    testImplementation(libs.junit)
+//    testImplementation(libs.google.truth.v11)
+//    // UI testing
+    androidTestImplementation(libs.androidx.junit)
+//    androidTestImplementation(libs.androidx.ui.test.junit4)
+//    androidTestImplementation(platform(libs.androidx.compose.bom))
+//    androidTestImplementation(libs.google.truth.v11)
+//    // Espresso for UI testing
     androidTestImplementation(libs.androidx.espresso.core)
+//    // Used for some dependencies
+//    debugImplementation(libs.androidx.ui.test.manifest)
 }
