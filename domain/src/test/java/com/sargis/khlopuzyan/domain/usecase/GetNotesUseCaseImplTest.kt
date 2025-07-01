@@ -5,7 +5,6 @@ import com.sargis.khlopuzyan.domain.entity.Note
 import com.sargis.khlopuzyan.domain.repository.FakeNoteRepository
 import com.sargis.khlopuzyan.domain.util.NoteOrder
 import com.sargis.khlopuzyan.domain.util.OrderType
-import com.sargis.khlopuzyan.presentation.util.NoteUtil.noteColors
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -15,6 +14,7 @@ class GetNotesUseCaseImplTest {
 
     private lateinit var getNotesUseCase: GetNotesUseCase
     private lateinit var fakeNoteRepository: FakeNoteRepository
+    val colors = listOf(1, 2, 3, 4, 5, 6)
 
     @Before
     fun setUp() {
@@ -22,7 +22,7 @@ class GetNotesUseCaseImplTest {
         getNotesUseCase = GetNotesUseCaseImpl(fakeNoteRepository)
 
         val notesToInsert = mutableListOf<Note>()
-        val colors = noteColors()
+
         ('a'..'z').forEachIndexed { index, c ->
             val note = Note(
                 id = index,

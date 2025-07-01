@@ -5,7 +5,6 @@ import com.sargis.khlopuzyan.domain.entity.InvalidNoteException
 import com.sargis.khlopuzyan.domain.entity.Note
 import com.sargis.khlopuzyan.domain.repository.FakeNoteRepository
 import com.sargis.khlopuzyan.domain.repository.NoteRepository
-import com.sargis.khlopuzyan.presentation.util.NoteUtil.noteColors
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
@@ -15,6 +14,7 @@ class InsertNoteUseCaseImplTest {
 
     private lateinit var insertNoteUseCase: InsertNoteUseCase
     private lateinit var repository: NoteRepository
+    val colors = listOf(1, 2, 3, 4, 5, 6)
 
     @Before
     fun setUp() {
@@ -24,7 +24,6 @@ class InsertNoteUseCaseImplTest {
 
     @Test
     fun `inserting note with empty title throws InvalidNoteException`() = runBlocking {
-        val colors = noteColors()
         val note = Note(
             id = 0,
             title = "",
@@ -41,7 +40,6 @@ class InsertNoteUseCaseImplTest {
 
     @Test
     fun `inserting note with empty content throws InvalidNoteException`() = runBlocking {
-        val colors = noteColors()
         val note = Note(
             id = 0,
             title = "Title",
@@ -60,7 +58,6 @@ class InsertNoteUseCaseImplTest {
     @Test
     fun `inserting note with not an empty title and content doesn't throw InvalidNoteException`() =
         runBlocking {
-            val colors = noteColors()
             val note = Note(
                 id = 0,
                 title = "Title",
