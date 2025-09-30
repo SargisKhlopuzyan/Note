@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.sargis.khlopuzyan.note.data"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24
@@ -19,19 +19,23 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         jvmTarget = "11"
     }
+
 //    buildFeatures {
 //        buildConfig = true
 //    }
@@ -54,7 +58,7 @@ dependencies {
     // If project uses any Kotlin source, use Kotlin Symbol Processing (KSP)
     ksp(libs.androidx.room.compiler)
 
-//    // Gson
+    // Gson
     implementation(libs.gson)
 
     implementation(libs.androidx.core.ktx)

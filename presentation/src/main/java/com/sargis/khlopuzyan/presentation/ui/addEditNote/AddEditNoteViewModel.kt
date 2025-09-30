@@ -1,23 +1,40 @@
 package com.sargis.khlopuzyan.presentation.ui.addEditNote
 
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sargis.khlopuzyan.domain.entity.InvalidNoteException
 import com.sargis.khlopuzyan.domain.entity.Note
 import com.sargis.khlopuzyan.domain.usecase.NoteUseCases
-import com.sargis.khlopuzyan.presentation.base.BaseViewModel
+import com.sargis.khlopuzyan.presentation.util.NoteUtil.noteColors
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
 class AddEditNoteViewModel(
     private val noteUseCase: NoteUseCases,
-//    savedStateHandle: SavedStateHandle,
-) : BaseViewModel<AddEditNoteUiState, AddEditNoteUiEvent>() {
+) : ViewModel() {
 
-    override val _uiState: MutableStateFlow<AddEditNoteUiState> =
-        MutableStateFlow(AddEditNoteUiState())
+    private val _noteTitleState = mutableStateOf(
+        NoteTextFieldState(
+            hint = "Enter title..."
+        )
+    )
+    val noteTitleState: State<NoteTextFieldState> = _noteTitleState
+
+    private val _noteContentState = mutableStateOf(
+        NoteTextFieldState(
+            hint = "Enter some content"
+        )
+    )
+    val noteContentState: State<NoteTextFieldState> = _noteContentState
+
+    private val _noteColorState = mutableIntStateOf(noteColors().random())
+    val noteColorState: State<Int> = _noteColorState
+
 
     private val _showToastEventFlow: MutableSharedFlow<UICallbackEvent> =
         MutableSharedFlow<UICallbackEvent>()
@@ -49,38 +66,38 @@ class AddEditNoteViewModel(
 //    }
 
 
-    override fun onEvent(event: AddEditNoteUiEvent) {
+    fun onEvent(event: AddEditNoteUiEvent) {
         when (event) {
             is AddEditNoteUiEvent.SetNoteId -> {
                 loadNote(event.id)
             }
 
             is AddEditNoteUiEvent.EnteredTitle -> {
-                uiState.value.noteTitleState.value = uiState.value.noteTitleState.value.copy(
+                _noteTitleState.value = noteTitleState.value.copy(
                     text = event.value,
                 )
             }
 
             is AddEditNoteUiEvent.ChangeTitleFocus -> {
-                uiState.value.noteTitleState.value = uiState.value.noteTitleState.value.copy(
-                    isHintVisible = !event.focusState.isFocused && uiState.value.noteTitleState.value.text.isEmpty()
+                _noteTitleState.value = noteTitleState.value.copy(
+                    isHintVisible = !event.focusState.isFocused && noteTitleState.value.text.isEmpty()
                 )
             }
 
             is AddEditNoteUiEvent.EnteredContent -> {
-                uiState.value.noteContentState.value = uiState.value.noteContentState.value.copy(
+                _noteContentState.value = noteContentState.value.copy(
                     text = event.value
                 )
             }
 
             is AddEditNoteUiEvent.ChangeContentFocus -> {
-                uiState.value.noteContentState.value = uiState.value.noteContentState.value.copy(
-                    isHintVisible = !event.focusState.isFocused && uiState.value.noteContentState.value.text.isEmpty()
+                _noteContentState.value = noteContentState.value.copy(
+                    isHintVisible = !event.focusState.isFocused && noteContentState.value.text.isEmpty()
                 )
             }
 
             is AddEditNoteUiEvent.ChangeColor -> {
-                uiState.value.noteColorState.intValue = event.color
+                _noteColorState.intValue = event.color
             }
 
             AddEditNoteUiEvent.SaveNote -> {
@@ -92,19 +109,18 @@ class AddEditNoteViewModel(
     private fun loadNote(noteId: Int?) {
         if (noteId != null) {
             viewModelScope.launch {
-                noteUseCase.getNoteByIdUseCase.getNoteById(noteId)?.also { note ->
+//                noteUseCase.getNoteByIdUseCase.getNoteById(noteId)?.also { note ->
+                noteUseCase.getNoteById(noteId)?.also { note ->
                     currentNoteId = noteId
-                    uiState.value.noteTitleState.value =
-                        uiState.value.noteTitleState.value.copy(
-                            text = note.title,
-                            isHintVisible = false
-                        )
-                    uiState.value.noteContentState.value =
-                        uiState.value.noteContentState.value.copy(
-                            text = note.content,
-                            isHintVisible = false
-                        )
-                    uiState.value.noteColorState.intValue = note.color
+                    _noteTitleState.value = noteTitleState.value.copy(
+                        text = note.title,
+                        isHintVisible = false
+                    )
+                    _noteContentState.value = noteContentState.value.copy(
+                        text = note.content,
+                        isHintVisible = false
+                    )
+                    _noteColorState.intValue = note.color
                 }
             }
         }
@@ -113,13 +129,14 @@ class AddEditNoteViewModel(
     private fun saveNote() {
         viewModelScope.launch {
             try {
-                noteUseCase.insertNoteUseCase.insertNote(
+//                noteUseCase.insertNoteUseCase.insertNote(
+                noteUseCase.insertNote(
                     Note(
                         id = currentNoteId,
-                        title = uiState.value.noteTitleState.value.text,
-                        content = uiState.value.noteContentState.value.text,
+                        title = _noteTitleState.value.text,
+                        content = _noteContentState.value.text,
                         timeStamp = System.currentTimeMillis(),
-                        color = uiState.value.noteColorState.intValue
+                        color = _noteColorState.intValue
                     )
                 )
                 _showToastEventFlow.emit(UICallbackEvent.SaveNote)

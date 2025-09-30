@@ -5,8 +5,8 @@ package com.sargis.khlopuzyan.domain.usecase
  * it is easier to have all in one place
  * */
 data class NoteUseCases(
-    val getNotesUseCase: GetNotesUseCase,
-    val getNoteByIdUseCase: GetNoteByIdUseCase,
-    val insertNoteUseCase: InsertNoteUseCase,
+    val getNotes: GetNotes,
+    val getNoteById: GetNoteById,
+    val insertNote: InsertNote,
     val deleteNoteUseCase: DeleteNoteUseCase,
 )

@@ -1,10 +1,12 @@
-package com.sargis.khlopuzyan.domain.usecase
+package com.sargis.khlopuzyan.domain.usecase.v1
 
 import com.google.common.truth.Truth
 import com.sargis.khlopuzyan.domain.entity.InvalidNoteException
 import com.sargis.khlopuzyan.domain.entity.Note
 import com.sargis.khlopuzyan.domain.repository.FakeNoteRepository
 import com.sargis.khlopuzyan.domain.repository.NoteRepository
+import com.sargis.khlopuzyan.domain.usecase.GetNoteById
+import com.sargis.khlopuzyan.domain.usecase.InsertNote
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
@@ -12,16 +14,18 @@ import org.junit.Test
 
 class InsertNoteUseCaseImplTest {
 
-    private lateinit var insertNoteUseCase: InsertNoteUseCase
-    private lateinit var getNoteByIdUseCase: GetNoteByIdUseCase
+    private lateinit var insertNote: InsertNote
+    private lateinit var getNoteById: GetNoteById
     private lateinit var repository: NoteRepository
     private val colors = listOf(1, 2, 3, 4, 5, 6)
 
     @Before
     fun setUp() {
         repository = FakeNoteRepository()
-        insertNoteUseCase = InsertNoteUseCaseImpl(repository)
-        getNoteByIdUseCase = GetNoteByIdUseCaseImpl(repository)
+//        insertNoteUseCase = InsertNoteUseCaseImpl(repository)
+//        getNoteByIdUseCase = GetNoteByIdUseCaseImpl(repository)
+        insertNote = InsertNote(repository)
+        getNoteById = GetNoteById(repository)
     }
 
     @Test
@@ -34,7 +38,8 @@ class InsertNoteUseCaseImplTest {
             color = colors.random()
         )
         try {
-            insertNoteUseCase.insertNote(note)
+//            insertNoteUseCase.insertNote(note)
+            insertNote(note)
         } catch (e: InvalidNoteException) {
             Truth.assertThat(e).hasMessageThat().isEqualTo("The title of the note can't be empty.");
         }
@@ -50,7 +55,8 @@ class InsertNoteUseCaseImplTest {
             color = colors.random()
         )
         try {
-            insertNoteUseCase.insertNote(note)
+//            insertNoteUseCase.insertNote(note)
+            insertNote(note)
         } catch (e: InvalidNoteException) {
             Truth.assertThat(e).hasMessageThat()
                 .isEqualTo("The content of the note can't be empty.");
@@ -67,7 +73,8 @@ class InsertNoteUseCaseImplTest {
                 timeStamp = System.currentTimeMillis(),
                 color = colors.random()
             )
-            insertNoteUseCase.insertNote(note)
+//            insertNoteUseCase.insertNote(note)
+            insertNote(note)
         }
 
     @Test
@@ -80,9 +87,12 @@ class InsertNoteUseCaseImplTest {
             timeStamp = System.currentTimeMillis(),
             color = colors.random()
         )
-        insertNoteUseCase.insertNote(note)
+//        insertNoteUseCase.insertNote(note)
+        insertNote(note)
+        insertNote(note)
 
-        val existingNote = getNoteByIdUseCase.getNoteById(noteId)
+//        val existingNote = getNoteByIdUseCase.getNoteById(noteId)
+        val existingNote = getNoteById(noteId)
 
         val newNote = Note(
             id = existingNote?.id,
@@ -91,8 +101,10 @@ class InsertNoteUseCaseImplTest {
             timeStamp = System.currentTimeMillis(),
             color = colors.random()
         )
-        insertNoteUseCase.insertNote(newNote)
-        val updatedNote = getNoteByIdUseCase.getNoteById(noteId)
+//        insertNoteUseCase.insertNote(newNote)
+        insertNote(newNote)
+//        val updatedNote = getNoteByIdUseCase.getNoteById(noteId)
+        val updatedNote = getNoteById(noteId)
 
         Truth.assertThat(updatedNote).isNotEqualTo(existingNote)
     }

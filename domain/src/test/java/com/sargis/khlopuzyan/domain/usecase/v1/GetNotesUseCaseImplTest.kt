@@ -1,8 +1,9 @@
-package com.sargis.khlopuzyan.domain.usecase
+package com.sargis.khlopuzyan.domain.usecase.v1
 
 import com.google.common.truth.Truth
 import com.sargis.khlopuzyan.domain.entity.Note
 import com.sargis.khlopuzyan.domain.repository.FakeNoteRepository
+import com.sargis.khlopuzyan.domain.usecase.GetNotes
 import com.sargis.khlopuzyan.domain.util.NoteOrder
 import com.sargis.khlopuzyan.domain.util.OrderType
 import kotlinx.coroutines.flow.first
@@ -12,14 +13,15 @@ import org.junit.Test
 
 class GetNotesUseCaseImplTest {
 
-    private lateinit var getNotesUseCase: GetNotesUseCase
+    private lateinit var getNotes: GetNotes
     private lateinit var noteRepository: FakeNoteRepository
     private val colors = listOf(1, 2, 3, 4, 5, 6)
 
     @Before
     fun setUp() {
         noteRepository = FakeNoteRepository()
-        getNotesUseCase = GetNotesUseCaseImpl(noteRepository)
+//        getNotesUseCase = GetNotesUseCaseImpl(noteRepository)
+        getNotes = GetNotes(noteRepository)
 
         val notesToInsert = mutableListOf<Note>()
 
@@ -51,7 +53,8 @@ class GetNotesUseCaseImplTest {
     // Title
     @Test
     fun `Order notes by title ascending, correct order`() = runBlocking {
-        val notes = getNotesUseCase.getNotes(NoteOrder.Title(OrderType.Ascending)).first()
+//        val notes = getNotesUseCase.getNotes(NoteOrder.Title(OrderType.Ascending)).first()
+        val notes = getNotes(NoteOrder.Title(OrderType.Ascending)).first()
         for (i in 0..notes.size - 2) {
 //            Truth.assertThat(notes[i].title).isLessThan(notes[i + 1].title)
             Truth.assertThat(notes[i].title).isAtMost(notes[i + 1].title)
@@ -60,7 +63,8 @@ class GetNotesUseCaseImplTest {
 
     @Test
     fun `Order notes by title descending, correct order`() = runBlocking {
-        val notes = getNotesUseCase.getNotes(NoteOrder.Title(OrderType.Descending)).first()
+//        val notes = getNotesUseCase.getNotes(NoteOrder.Title(OrderType.Descending)).first()
+        val notes = getNotes(NoteOrder.Title(OrderType.Descending)).first()
         for (i in 0..notes.size - 2) {
 //            Truth.assertThat(notes[i].title).isGreaterThan(notes[i + 1].title)
             Truth.assertThat(notes[i].title).isAtLeast(notes[i + 1].title)
@@ -70,7 +74,8 @@ class GetNotesUseCaseImplTest {
     // Date
     @Test
     fun `Order notes by date ascending, correct order`() = runBlocking {
-        val notes = getNotesUseCase.getNotes(NoteOrder.Date(OrderType.Ascending)).first()
+//        val notes = getNotesUseCase.getNotes(NoteOrder.Date(OrderType.Ascending)).first()
+        val notes = getNotes(NoteOrder.Date(OrderType.Ascending)).first()
         for (i in 0..notes.size - 2) {
             Truth.assertThat(notes[i].timeStamp).isAtMost(notes[i + 1].timeStamp)
         }
@@ -78,7 +83,8 @@ class GetNotesUseCaseImplTest {
 
     @Test
     fun `Order notes by date descending, correct order`() = runBlocking {
-        val notes = getNotesUseCase.getNotes(NoteOrder.Date(OrderType.Descending)).first()
+//        val notes = getNotesUseCase.getNotes(NoteOrder.Date(OrderType.Descending)).first()
+        val notes = getNotes(NoteOrder.Date(OrderType.Descending)).first()
         for (i in 0..notes.size - 2) {
             Truth.assertThat(notes[i].timeStamp).isAtLeast(notes[i + 1].timeStamp)
         }
@@ -87,7 +93,8 @@ class GetNotesUseCaseImplTest {
     // Color
     @Test
     fun `Order notes by color ascending, correct order`() = runBlocking {
-        val notes = getNotesUseCase.getNotes(NoteOrder.Color(OrderType.Ascending)).first()
+//        val notes = getNotesUseCase.getNotes(NoteOrder.Color(OrderType.Ascending)).first()
+        val notes = getNotes(NoteOrder.Color(OrderType.Ascending)).first()
         for (i in 0..notes.size - 2) {
             Truth.assertThat(notes[i].color).isAtMost(notes[i + 1].color)
         }
@@ -95,7 +102,8 @@ class GetNotesUseCaseImplTest {
 
     @Test
     fun `Order notes by color descending, correct order`() = runBlocking {
-        val notes = getNotesUseCase.getNotes(NoteOrder.Color(OrderType.Descending)).first()
+//        val notes = getNotesUseCase.getNotes(NoteOrder.Color(OrderType.Descending)).first()
+        val notes = getNotes(NoteOrder.Color(OrderType.Descending)).first()
         for (i in 0..notes.size - 2) {
             Truth.assertThat(notes[i].color).isAtLeast(notes[i + 1].color)
         }

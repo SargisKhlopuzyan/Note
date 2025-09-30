@@ -60,14 +60,16 @@ class NotesViewModel(
 
     private fun restoreNote() {
         viewModelScope.launch {
-            noteUseCases.insertNoteUseCase.insertNote(recentlyDeletedNote ?: return@launch)
+//            noteUseCases.insertNoteUseCase.insertNote(recentlyDeletedNote ?: return@launch)
+            noteUseCases.insertNote(recentlyDeletedNote ?: return@launch)
             recentlyDeletedNote = null
         }
     }
 
     private fun getNotes(noteOrder: NoteOrder) {
         getNotesJob?.cancel()
-        getNotesJob = noteUseCases.getNotesUseCase.getNotes(noteOrder).onEach { notes ->
+//        getNotesJob = noteUseCases.getNotesUseCase.getNotes(noteOrder).onEach { notes ->
+        getNotesJob = noteUseCases.getNotes(noteOrder).onEach { notes ->
             updateUiState {
                 it.copy(
                     notes = notes,
@@ -76,4 +78,18 @@ class NotesViewModel(
             }
         }.launchIn(viewModelScope)
     }
+
+//    private fun getNotes(noteOrder: NoteOrder) {
+//        getNotesJob?.cancel()
+//        getNotesJob = viewModelScope.launch {
+//            noteUseCases.getNotesUseCase.getNotes(noteOrder).onEach { notes ->
+//                updateUiState {
+//                    it.copy(
+//                        notes = notes,
+//                        noteOrder = noteOrder
+//                    )
+//                }
+//            }
+//        }
+//    }
 }

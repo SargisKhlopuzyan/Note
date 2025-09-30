@@ -3,37 +3,31 @@ agp = "8.10.1"
 koinCore = "4.0.3"
 koinTestJunit4 = "4.0.3"
 kotlin = "2.1.21"
-coreKtx = "1.16.0"
-lifecycleRuntimeKtx = "2.9.1"
-activityCompose = "1.10.1"
-composeBom = "2025.06.01"
+coreKtx = "1.17.0"
+lifecycleRuntimeKtx = "2.9.4"
+activityCompose = "1.11.0"
+composeBom = "2025.09.01"
 appcompat = "1.7.1"
-material = "1.12.0"
-#ksp = "2.0.21-1.0.27"
-#ksp = "2.2.0-2.0.2"
+material = "1.13.0"
 ksp = "2.1.21-2.0.2"
-koin = "3.5.3"
-roomRuntime = "2.7.2"
-gson = "2.11.0"
-androidxNavigationCompose = "2.9.0"
-#kotlinter = "5.0.1"
+koin = "4.1.0"
+roomRuntime = "2.8.1"
+gson = "2.13.1"
+androidxNavigationCompose = "2.9.5"
 materialIconsExtendedAndroid = "1.7.8"
 
 # Testing
-core = "1.6.1"
+core = "1.7.0"
 junitJunit = "4.13.2"
 coreTesting = "2.2.0"
 kotlinxCoroutinesTest = "1.10.2"
 truth = "1.4.4"
 mockk = "1.14.4"
-uiTestManifest = "1.8.3"
-coreKtxVersion = "1.6.1"
-runner = "1.6.2"
-#
-#junit = "4.13.2"
-junitVersion = "1.2.1"
-espressoCore = "3.6.1"
-#googleTruth = "1.1"
+uiTestManifest = "1.9.2"
+coreKtxVersion = "1.7.0"
+runner = "1.7.0"
+junitVersion = "1.3.0"
+espressoCore = "3.7.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -66,24 +60,18 @@ junit = { module = "junit:junit", version.ref = "junitJunit" }
 androidx-core-testing = { module = "androidx.arch.core:core-testing", version.ref = "coreTesting" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
 truth = { module = "com.google.truth:truth", version.ref = "truth" }
+
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "uiTestManifest" }
 core-ktx = { module = "androidx.test:core-ktx", version.ref = "coreKtxVersion" }
 androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
-
-#
-#androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
-#
-#junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
-
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "agp" }
-#kotlinter = { id = "org.jmailen.kotlinter", version.ref = "kotlinter" }
 ksp = { id = "com.google.devtools.ksp",  version.ref ="ksp" }

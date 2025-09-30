@@ -19,7 +19,7 @@ data class AddEditNoteUiState(
         )
     ),
     val noteColorState: MutableIntState = mutableIntStateOf(noteColors().random()),
-) : UIState
+)/* : UIState*/
 
 data class NoteTextFieldState(
     var text: String = "",

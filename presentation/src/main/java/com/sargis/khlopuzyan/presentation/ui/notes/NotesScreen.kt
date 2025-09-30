@@ -105,7 +105,7 @@ fun Notes(
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
-                    contentDescription = "Add note"
+                    contentDescription = "Add"
                 )
             }
         }

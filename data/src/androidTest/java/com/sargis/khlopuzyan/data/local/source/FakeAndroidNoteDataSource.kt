@@ -15,7 +15,7 @@ class FakeAndroidNoteDataSource : NoteDataSource {
     }
 
     override suspend fun getNoteById(id: Int): NoteEntity? {
-        return notes.find { it.id == id }
+        return notes.find { it.id == id }?.copy()
     }
 
     override suspend fun insertNote(note: NoteEntity) {

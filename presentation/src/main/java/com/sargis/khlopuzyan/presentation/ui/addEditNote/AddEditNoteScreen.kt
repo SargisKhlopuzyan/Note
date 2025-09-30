@@ -26,7 +26,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.State
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
@@ -36,9 +36,9 @@ import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.sargis.khlopuzyan.presentation.util.NoteUtil.noteColors
+import com.sargis.khlopuzyan.presentation.util.TestTags
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
@@ -50,7 +50,9 @@ fun AddEditNoteScreen(
     noteColor: Int?,
     addEditNoteViewModel: AddEditNoteViewModel = koinViewModel(),
 ) {
-    val uiState by addEditNoteViewModel.uiState.collectAsStateWithLifecycle()
+    val noteTitleState = addEditNoteViewModel.noteTitleState
+    val noteContentState = addEditNoteViewModel.noteContentState
+    val noteColorState = addEditNoteViewModel.noteColorState
 
     val snackbarHostState = remember {
         SnackbarHostState()
@@ -74,7 +76,9 @@ fun AddEditNoteScreen(
     }
 
     AddEditNote(
-        uiState,
+        noteTitleState,
+        noteContentState,
+        noteColorState,
         noteColor,
         onChangeColor = { color ->
             addEditNoteViewModel.onEvent(AddEditNoteUiEvent.ChangeColor(color))
@@ -99,7 +103,9 @@ fun AddEditNoteScreen(
 
 @Composable
 fun AddEditNote(
-    uiState: AddEditNoteUiState,
+    noteTitleState: androidx.compose.runtime.State<NoteTextFieldState>,
+    noteContentState: androidx.compose.runtime.State<NoteTextFieldState>,
+    noteColorState: androidx.compose.runtime.State<Int>,
     noteColor: Int?,
     onChangeColor: (Int) -> Unit,
     onTitleValueChange: (String) -> Unit,
@@ -108,9 +114,10 @@ fun AddEditNote(
     onContentFocusChange: (FocusState) -> Unit,
     onSaveNote: () -> Unit,
 ) {
-    val noteTitleState = uiState.noteTitleState.value
-    val noteContentState = uiState.noteContentState.value
-    val noteColorState = uiState.noteColorState.intValue
+
+    val noteTitleState = noteTitleState.value
+    val noteContentState = noteContentState.value
+    val noteColorState = noteColorState.value
 
     val noteBackgroundAnimatable = remember {
         Animatable(Color(noteColor ?: noteColorState))
@@ -129,7 +136,7 @@ fun AddEditNote(
             ) {
                 Icon(
                     imageVector = Icons.Default.Save,
-                    contentDescription = "Save note"
+                    contentDescription = "Save"
                 )
             }
         }
@@ -194,7 +201,8 @@ fun AddEditNote(
                 },
                 isHintVisible = noteTitleState.isHintVisible,
                 singleLine = true,
-                textStyle = MaterialTheme.typography.headlineSmall
+                textStyle = MaterialTheme.typography.headlineSmall,
+                testTag = TestTags.TITLE_TEXT_FIELD
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -213,7 +221,8 @@ fun AddEditNote(
                 },
                 isHintVisible = noteContentState.isHintVisible,
                 singleLine = false,
-                textStyle = MaterialTheme.typography.bodyLarge
+                textStyle = MaterialTheme.typography.bodyLarge,
+                testTag = TestTags.CONTENT_TEXT_FIELD
             )
         }
     }
@@ -222,14 +231,16 @@ fun AddEditNote(
 @Preview(showBackground = true)
 @Composable
 fun AddEditNotePreview() {
-    AddEditNote(
-        AddEditNoteUiState(),
-        noteColor = null,
-        onChangeColor = {},
-        onTitleValueChange = {},
-        onTitleFocusChange = {},
-        onContentValueChange = {},
-        onContentFocusChange = {},
-        onSaveNote = {}
-    )
+//    AddEditNote(
+//        State<NoteTextFieldState>(NoteTextFieldState()),
+//        NoteTextFieldState(),
+//        1,
+//        noteColor = null,
+//        onChangeColor = {},
+//        onTitleValueChange = {},
+//        onTitleFocusChange = {},
+//        onContentValueChange = {},
+//        onContentFocusChange = {},
+//        onSaveNote = {}
+//    )
 }

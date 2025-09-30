@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.sargis.khlopuzyan.note.presentation"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24
@@ -19,19 +19,23 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         jvmTarget = "11"
     }
+
     buildFeatures {
         compose = true
     }
@@ -65,7 +69,6 @@ dependencies {
 
     // Compose preview
     debugImplementation(libs.androidx.ui.tooling)
-
 
 
     // Local unit tests
