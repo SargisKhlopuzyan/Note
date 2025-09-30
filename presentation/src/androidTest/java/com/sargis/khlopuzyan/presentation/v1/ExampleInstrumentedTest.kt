@@ -1,4 +1,4 @@
-package com.sargis.khlopuzyan.presentation
+package com.sargis.khlopuzyan.presentation.v1
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

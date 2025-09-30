@@ -1,6 +1,7 @@
 package com.sargis.khlopuzyan.presentation.util
 
 object TestTags {
+    const val SORT = "SORT"
     const val ORDER_SECTION = "ORDER_SECTION"
     const val TITLE_TEXT_FIELD = "TITLE_TEXT_FIELD"
     const val CONTENT_TEXT_FIELD = "CONTENT_TEXT_FIELD"

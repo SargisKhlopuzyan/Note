@@ -53,7 +53,8 @@ class NotesViewModel(
 
     private fun deleteNote(note: Note) {
         viewModelScope.launch {
-            noteUseCases.deleteNote.deleteNote(note)
+//            noteUseCases.deleteNote.deleteNote(note)
+            noteUseCases.deleteNote(note)
             recentlyDeletedNote = note
         }
     }

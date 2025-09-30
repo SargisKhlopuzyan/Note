@@ -1,6 +1,7 @@
-package com.sargis.khlopuzyan.data.local.dao
+package com.sargis.khlopuzyan.data.v1.local.dao
 
 import com.google.common.truth.Truth
+import com.sargis.khlopuzyan.data.local.dao.NoteDao
 import com.sargis.khlopuzyan.data.local.entity.NoteEntity
 import kotlinx.coroutines.test.runTest
 import org.junit.After

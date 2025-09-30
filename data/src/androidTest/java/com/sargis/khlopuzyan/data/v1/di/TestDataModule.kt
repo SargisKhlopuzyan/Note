@@ -1,4 +1,4 @@
-package com.sargis.khlopuzyan.data.di
+package com.sargis.khlopuzyan.data.v1.di
 
 import com.sargis.khlopuzyan.data.local.dao.NoteDao
 import com.sargis.khlopuzyan.data.local.db.NoteDatabase
@@ -8,21 +8,21 @@ import com.sargis.khlopuzyan.data.repository.NoteRepositoryImpl
 import com.sargis.khlopuzyan.domain.repository.NoteRepository
 import org.koin.dsl.module
 
-private val databaseModule = module {
+private val testDatabaseModule = module {
     single<NoteDatabase> {
-        NoteDatabase.getInstance(get())
+        NoteDatabase.getTestInstance(get())
     }
     single<NoteDao> {
         get<NoteDatabase>().noteDao()
     }
     single<NoteDataSource> {
+//        FakeAndroidNoteDataSource()
         NoteDataSourceImpl(get())
     }
 }
 
 private val repositoryModule = module {
     single<NoteRepository> { NoteRepositoryImpl(get()) }
-//    single<NoteRepository> { FakeNoteRepository() }
 }
 
-val dataModule = listOf(databaseModule, repositoryModule)
+val testDataModule = listOf(testDatabaseModule, repositoryModule)

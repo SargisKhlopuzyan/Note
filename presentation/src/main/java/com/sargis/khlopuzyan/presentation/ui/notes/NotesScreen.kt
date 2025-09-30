@@ -117,7 +117,8 @@ fun Notes(
                 .padding(16.dp)
         ) {
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -127,9 +128,12 @@ fun Notes(
                 )
 
                 IconButton(
+                    modifier = Modifier,
                     onClick = onToggleOrderSection
                 ) {
                     Icon(
+                        modifier = Modifier
+                            .testTag(TestTags.SORT),
                         imageVector = Icons.AutoMirrored.Filled.Sort,
                         contentDescription = "Sort"
                     )

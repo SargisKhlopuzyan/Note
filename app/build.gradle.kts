@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.androidTest
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -15,7 +17,8 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.sargis.khlopuzyan.data.InstrumentationTestRunner"
+//        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 //        consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -58,7 +61,40 @@ dependencies {
 //    implementation(libs.androidx.activity.compose)
 //    implementation(libs.androidx.runner)
 
+
+//    androidTestImplementation(group = "app:data", name = "data",  configuration = "androidTestImplementation")
+    androidTestImplementation(projects.data)
+    androidTestImplementation(projects.presentation)
+
+
     // Test
     testImplementation(libs.androidx.junit)
+//    androidTestImplementation(libs.androidx.junit)
+
+
+    // Instrumentation tests
+    androidTestImplementation(libs.androidx.core.testing)
+    androidTestImplementation(libs.kotlinx.coroutines.test)
+    androidTestImplementation(libs.truth)
+    androidTestImplementation(libs.core.ktx)
+//    androidTestImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
+    // This need to be included as no one knows why app crashes
+    androidTestImplementation(libs.androidx.runner)
+    androidTestImplementation(libs.koin.core)
+    androidTestImplementation(libs.koin.test.junit4)
+
+//
+//
+//    testImplementation(libs.junit)
+//    testImplementation(libs.google.truth.v11)
+//    // UI testing
     androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+
+//    androidTestImplementation(platform(libs.androidx.compose.bom))
+//    androidTestImplementation(libs.google.truth.v11)
+//    // Espresso for UI testing
+    androidTestImplementation(libs.androidx.espresso.core)
+//    // Used for some dependencies
+//    debugImplementation(libs.androidx.ui.test.manifest)
 }

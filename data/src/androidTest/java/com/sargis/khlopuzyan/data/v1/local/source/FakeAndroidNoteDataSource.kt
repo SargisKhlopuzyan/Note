@@ -1,6 +1,7 @@
-package com.sargis.khlopuzyan.data.local.source
+package com.sargis.khlopuzyan.data.v1.local.source
 
 import com.sargis.khlopuzyan.data.local.entity.NoteEntity
+import com.sargis.khlopuzyan.data.local.source.NoteDataSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 

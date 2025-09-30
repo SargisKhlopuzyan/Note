@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class FakeNoteRepository : NoteRepository {
+class NoteFakeRepository : NoteRepository {
 
     private val notes = mutableListOf<Note>()
     private val _flow: MutableStateFlow<List<Note>> = MutableStateFlow<List<Note>>(emptyList())

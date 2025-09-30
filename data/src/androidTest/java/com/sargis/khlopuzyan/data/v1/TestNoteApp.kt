@@ -1,8 +1,8 @@
-package com.sargis.khlopuzyan.data
+package com.sargis.khlopuzyan.data.v1
 
 import android.app.Application
 import androidx.test.platform.app.InstrumentationRegistry
-import com.sargis.khlopuzyan.data.di.testDataModule
+import com.sargis.khlopuzyan.data.v1.di.testDataModule
 import com.sargis.khlopuzyan.domain.di.domainModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.component.KoinComponent

@@ -1,4 +1,4 @@
-package com.sargis.khlopuzyan.presentation.ui
+package com.sargis.khlopuzyan.presentation.v1.ui
 
 import androidx.activity.compose.setContent
 import androidx.compose.ui.test.assertIsDisplayed
@@ -19,6 +19,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.sargis.khlopuzyan.presentation.ui.MainActivity
 import com.sargis.khlopuzyan.presentation.ui.addEditNote.AddEditNoteScreen
 import com.sargis.khlopuzyan.presentation.ui.navigation.NoteScreen
 import com.sargis.khlopuzyan.presentation.ui.notes.NotesScreen

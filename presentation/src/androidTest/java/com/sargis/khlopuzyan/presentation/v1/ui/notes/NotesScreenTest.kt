@@ -1,22 +1,25 @@
-package com.sargis.khlopuzyan.presentation.ui.notes
+package com.sargis.khlopuzyan.presentation.v1.ui.notes
 
+import android.content.Context
 import androidx.activity.compose.setContent
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.test.core.app.ApplicationProvider
 import com.sargis.khlopuzyan.presentation.ui.MainActivity
 import com.sargis.khlopuzyan.presentation.ui.navigation.NoteScreen
+import com.sargis.khlopuzyan.presentation.ui.notes.NotesScreen
 import com.sargis.khlopuzyan.presentation.ui.theme.NoteTheme
 import com.sargis.khlopuzyan.presentation.util.TestTags
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.koin.test.KoinTest
-
 
 class NotesScreenTest : KoinTest {
 
@@ -42,13 +45,10 @@ class NotesScreenTest : KoinTest {
 
     @Test
     fun clickToggleOrderSection_isVisible() {
-//        val context = ApplicationProvider.getApplicationContext<Context>()
+        val context = ApplicationProvider.getApplicationContext<Context>()
         composeRule.onNodeWithTag(TestTags.ORDER_SECTION, false).assertDoesNotExist()
-        composeRule.onNodeWithTag(TestTags.SORT, true).assertExists()
-//        composeRule.onNodeWithContentDescription("Sort").performClick()
-        composeRule.onNodeWithTag(TestTags.SORT, true).performClick()
+        composeRule.onNodeWithContentDescription("Sort").performClick()
         composeRule.onNodeWithTag(TestTags.ORDER_SECTION, false).assertExists()
         composeRule.onNodeWithTag(TestTags.ORDER_SECTION, false).assertIsDisplayed()
     }
-
 }
