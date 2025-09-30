@@ -1,6 +1,6 @@
 package com.sargis.khlopuzyan.domain.di
 
-import com.sargis.khlopuzyan.domain.usecase.DeleteNoteUseCase
+import com.sargis.khlopuzyan.domain.usecase.DeleteNote
 import com.sargis.khlopuzyan.domain.usecase.GetNoteById
 import com.sargis.khlopuzyan.domain.usecase.GetNotes
 import com.sargis.khlopuzyan.domain.usecase.InsertNote
@@ -16,7 +16,7 @@ private val useCaseModule = module {
     single<GetNotes> { GetNotes(get()) }
     single<GetNoteById> { GetNoteById(get()) }
     single<InsertNote> { InsertNote(get()) }
-    single<DeleteNoteUseCase> { DeleteNoteUseCase(get()) }
+    single<DeleteNote> { DeleteNote(get()) }
 
     single<NoteUseCases> { NoteUseCases(get(), get(), get(), get()) }
 }

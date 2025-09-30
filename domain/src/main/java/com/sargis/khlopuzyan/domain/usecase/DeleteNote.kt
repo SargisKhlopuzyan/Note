@@ -15,7 +15,7 @@ import com.sargis.khlopuzyan.domain.repository.NoteRepository
 //    }
 //}
 
-class DeleteNoteUseCase(
+class DeleteNote(
     private val noteRepository: NoteRepository,
 ) {
     suspend operator fun invoke(note: Note) {
