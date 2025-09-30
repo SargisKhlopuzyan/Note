@@ -23,8 +23,8 @@ private val databaseModule = module {
 
 private val repositoryModule = module {
 //    single<PixabayApi> { PixabayApiRetrofitBuilder.build() }
-//    single<NoteRepository> { NoteRepositoryImpl(get()) }
-    single<NoteRepository> { FakeNoteRepository() }
+    single<NoteRepository> { NoteRepositoryImpl(get()) }
+//    single<NoteRepository> { FakeNoteRepository() }
 }
 
 private val utilityModule = module {
