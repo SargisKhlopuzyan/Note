@@ -2,7 +2,10 @@ package com.sargis.khlopuzyan.presentation.ui.notes
 
 import androidx.activity.compose.setContent
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsNotSelected
+import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.navigation.compose.NavHost
@@ -49,6 +52,26 @@ class NotesScreenTest : KoinTest {
         composeRule.onNodeWithTag(TestTags.SORT, true).performClick()
         composeRule.onNodeWithTag(TestTags.ORDER_SECTION, false).assertExists()
         composeRule.onNodeWithTag(TestTags.ORDER_SECTION, false).assertIsDisplayed()
+    }
+
+    @Test
+    fun clickToggleOrderSection_AndChangeOrder_isVisible() {
+//        composeRule.onNodeWithTag(TestTags.ORDER_SECTION, true).assertDoesNotExist()
+//        composeRule.onNodeWithContentDescription("Sort").performClick()
+        composeRule.onNodeWithTag(TestTags.SORT, true).assertExists()
+//        composeRule.onNodeWithTag(TestTags.SORT, true).performClick()
+        composeRule.onNodeWithTag(TestTags.ORDER_SECTION, true).assertExists()
+        composeRule.onNodeWithTag(TestTags.ORDER_SECTION, true).assertIsDisplayed()
+//        composeRule.onNodeWithTag(TestTags.ORDER_SECTION_TITLE, true).assertExists()
+//        composeRule.onNodeWithTag(TestTags.ORDER_SECTION_DATE, true).assertExists()
+//        composeRule.onNodeWithTag(TestTags.ORDER_SECTION_DATE, true).assertIsDisplayed()
+//        composeRule.onNodeWithTag(TestTags.ORDER_SECTION_COLOR, true).assertExists()
+//        composeRule.onNodeWithTag(TestTags.ORDER_SECTION_ASCENDING, true).assertExists()
+//        composeRule.onNodeWithTag(TestTags.ORDER_SECTION_DESCENDING, true).assertExists()
+//        composeRule.onNodeWithTag(TestTags.ORDER_SECTION_TITLE, true).assertIsNotSelected()
+//        composeRule.onNodeWithTag(TestTags.ORDER_SECTION_DATE, true).assertIsSelected()
+
+
     }
 
 }

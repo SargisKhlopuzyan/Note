@@ -19,6 +19,12 @@
       <SelectionState runConfigName="clickToggleOrderSection_isVisible()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="clickToggleOrderSection_AndChangeOrder_isVisible()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="saveNewNote_editAfterwords()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>

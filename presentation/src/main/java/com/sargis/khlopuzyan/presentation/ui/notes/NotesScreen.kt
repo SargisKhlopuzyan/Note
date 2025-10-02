@@ -45,6 +45,7 @@ import com.sargis.khlopuzyan.domain.entity.Note
 import com.sargis.khlopuzyan.domain.util.NoteOrder
 import com.sargis.khlopuzyan.presentation.ui.common.OrderSection
 import com.sargis.khlopuzyan.presentation.ui.navigation.NoteScreen
+import com.sargis.khlopuzyan.presentation.ui.theme.NoteTheme
 import com.sargis.khlopuzyan.presentation.util.TestTags
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
@@ -139,11 +140,11 @@ fun Notes(
                     )
                 }
             }
-            AnimatedVisibility(
-                visible = uiState.orderSectionVisible,
-                enter = fadeIn() + slideInVertically(),
-                exit = fadeOut() + slideOutVertically()
-            ) {
+//            AnimatedVisibility(
+//                visible = uiState.orderSectionVisible,
+//                enter = fadeIn() + slideInVertically(),
+//                exit = fadeOut() + slideOutVertically()
+//            ) {
                 OrderSection(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -154,7 +155,7 @@ fun Notes(
                         onChangeOrder(noteOrder)
                     }
                 )
-            }
+//            }
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -196,13 +197,15 @@ fun Notes(
 @Preview(showBackground = true)
 @Composable
 fun NotesPreview() {
-    Notes(
-        rememberNavController(),
-        NotesUiState(),
-        onToggleOrderSection = {},
-        onChangeOrder = {},
-        onDeleteNote = {},
-        onRestoreNote = {},
-        onAddNote = {},
-    )
+    NoteTheme(dynamicColor = false) {
+        Notes(
+            rememberNavController(),
+            NotesUiState(),
+            onToggleOrderSection = {},
+            onChangeOrder = {},
+            onDeleteNote = {},
+            onRestoreNote = {},
+            onAddNote = {},
+        )
+    }
 }

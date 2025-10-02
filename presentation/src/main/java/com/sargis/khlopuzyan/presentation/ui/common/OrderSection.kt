@@ -8,10 +8,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sargis.khlopuzyan.domain.util.NoteOrder
 import com.sargis.khlopuzyan.domain.util.OrderType
+import com.sargis.khlopuzyan.presentation.util.TestTags
 
 @Composable
 fun OrderSection(
@@ -20,12 +23,21 @@ fun OrderSection(
     onOrderChange: (NoteOrder) -> Unit,
 ) {
     Column(
-        modifier = modifier
+        modifier = modifier.semantics {
+            this.testTagsAsResourceId = true
+        },
     ) {
-        Row(modifier = Modifier.fillMaxWidth()) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .semantics {
+                    this.testTagsAsResourceId = true
+                },
+        ) {
             DefaultRadioButton(
                 text = "Title",
                 selected = noteOrder is NoteOrder.Title,
+                tag = TestTags.ORDER_SECTION_TITLE,
                 onSelect = {
                     onOrderChange(
                         NoteOrder.Title(noteOrder.orderType)
@@ -38,6 +50,7 @@ fun OrderSection(
             DefaultRadioButton(
                 text = "Date",
                 selected = noteOrder is NoteOrder.Date,
+                tag = TestTags.ORDER_SECTION_DATE,
                 onSelect = {
                     onOrderChange(NoteOrder.Date(noteOrder.orderType))
                 }
@@ -48,6 +61,7 @@ fun OrderSection(
             DefaultRadioButton(
                 text = "Color",
                 selected = noteOrder is NoteOrder.Color,
+                tag = TestTags.ORDER_SECTION_COLOR,
                 onSelect = {
                     onOrderChange(NoteOrder.Color(noteOrder.orderType))
                 }
@@ -60,6 +74,7 @@ fun OrderSection(
             DefaultRadioButton(
                 text = "Ascending",
                 selected = noteOrder.orderType is OrderType.Ascending,
+                tag = TestTags.ORDER_SECTION_ASCENDING,
                 onSelect = {
                     onOrderChange(noteOrder.copy(OrderType.Ascending))
                 }
@@ -70,6 +85,7 @@ fun OrderSection(
             DefaultRadioButton(
                 text = "Descending",
                 selected = noteOrder.orderType is OrderType.Descending,
+                tag = TestTags.ORDER_SECTION_DESCENDING,
                 onSelect = {
                     onOrderChange(noteOrder.copy(OrderType.Descending))
                 }

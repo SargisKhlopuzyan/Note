@@ -3,6 +3,11 @@ package com.sargis.khlopuzyan.presentation.util
 object TestTags {
     const val SORT = "SORT"
     const val ORDER_SECTION = "ORDER_SECTION"
+    const val ORDER_SECTION_TITLE = "ORDER_SECTION_TITLE"
+    const val ORDER_SECTION_DATE = "ORDER_SECTION_DATE"
+    const val ORDER_SECTION_COLOR = "ORDER_SECTION_COLOR"
+    const val ORDER_SECTION_ASCENDING = "ORDER_SECTION_ASCENDING"
+    const val ORDER_SECTION_DESCENDING = "ORDER_SECTION_DESCENDING"
     const val TITLE_TEXT_FIELD = "TITLE_TEXT_FIELD"
     const val CONTENT_TEXT_FIELD = "CONTENT_TEXT_FIELD"
 }

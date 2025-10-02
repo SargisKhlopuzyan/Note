@@ -1,6 +1,5 @@
 package com.sargis.khlopuzyan.presentation.v1.ui.notes
 
-import android.content.Context
 import androidx.activity.compose.setContent
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
@@ -10,7 +9,6 @@ import androidx.compose.ui.test.performClick
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.test.core.app.ApplicationProvider
 import com.sargis.khlopuzyan.presentation.ui.MainActivity
 import com.sargis.khlopuzyan.presentation.ui.navigation.NoteScreen
 import com.sargis.khlopuzyan.presentation.ui.notes.NotesScreen
@@ -45,7 +43,6 @@ class NotesScreenTest : KoinTest {
 
     @Test
     fun clickToggleOrderSection_isVisible() {
-        val context = ApplicationProvider.getApplicationContext<Context>()
         composeRule.onNodeWithTag(TestTags.ORDER_SECTION, false).assertDoesNotExist()
         composeRule.onNodeWithContentDescription("Sort").performClick()
         composeRule.onNodeWithTag(TestTags.ORDER_SECTION, false).assertExists()
